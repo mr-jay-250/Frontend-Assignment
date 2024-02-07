@@ -82,12 +82,6 @@ body {
     font-weight: 600;
 }
 
-/* label {
-    color: black;
-    font-size: 1.2rem;
-    font-weight: 600;
-} */
-
 .radioContainer {
     display: flex;
 }
@@ -155,13 +149,13 @@ select {
     height: 34px;
 }
   
-  .switch input {
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
+}
   
-  .slider {
+.slider {
     position: absolute;
     cursor: pointer;
     width: 2rem;
@@ -174,9 +168,9 @@ select {
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 34px;
-  }
+}
   
-  .slider:before {
+.slider:before {
     position: absolute;
     content: "";
     height: 0.5rem;
@@ -187,18 +181,18 @@ select {
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
-  }
+}
   
-  input:checked + .slider {
+input:checked + .slider {
     background-color: #2196F3;
-  }
+}
   
-  input:focus + .slider {
+input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
-  }
+}
   
-  input:checked + .slider:before {
+input:checked + .slider:before {
     -webkit-transform: translateX(1rem);
     -ms-transform: translateX(1rem);
     transform: translateX(1rem);
-  }
+}
