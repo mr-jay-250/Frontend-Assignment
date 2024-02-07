@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import initialUiSchema from './helper';
 import styles from './App.module.css';
 import JsonEditor from './components/JsonEditor';
 import FormPreview from './components/FormPreview';
 
 const App = () => {
-  const [uiSchema, setUiSchema] = useState(initUiSchema);
+  const [uiSchema, setUiSchema] = useState([]);
   const [selectedTab, setSelectedTab] = useState(0);
 
   const handleJsonChange = newUiSchema => {
@@ -36,5 +35,3 @@ const App = () => {
 };
 
 export default App;
-
-const initUiSchema = initialUiSchema;

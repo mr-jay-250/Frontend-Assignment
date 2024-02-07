@@ -5,7 +5,10 @@ import styles from '../App.module.css';
 
 const FieldInput = ({ field, register, parentJsonKey, level }) => (
   <div className={styles.inputField}>
-    <div className={styles.sectionHeading}>{field.label}</div>
+    <div className={styles.sectionHeading}>
+      {field.label}
+      {field.validate && field.validate.required && <span className={styles.requiredAsterisk}>*</span>}
+    </div>
     <input
       className={styles.input}
       type='text'
@@ -57,7 +60,10 @@ const FieldRadio = ({
 
 const FieldSelect = ({ field, register, watch, parentJsonKey, level }) => (
   <div className={styles.selectContainer}>
-    <div className={styles.sectionHeading}>{field.label}</div>
+    <div className={styles.sectionHeading}>
+      {field.label}
+      {field.validate && field.validate.required && <span className={styles.requiredAsterisk}>*</span>}
+    </div>
     <select
       {...register(
         level === 0 ? field.jsonKey : `${parentJsonKey}.${field.jsonKey}`,
@@ -108,7 +114,10 @@ const FieldGroup = ({
 }) => {
   return (
     <>
-      <div className={styles.sectionHeading}>{field.label}</div>
+      <div className={styles.sectionHeading}>
+        {field.label}
+        {field.validate && field.validate.required && <span className={styles.requiredAsterisk}>*</span>}
+      </div>
       <RenderField
         uiSchema={field.subParameters}
         register={register}

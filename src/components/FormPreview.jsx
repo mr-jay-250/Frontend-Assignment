@@ -20,20 +20,30 @@ const FormPreview = ({ uiSchema, selectedTab }) => {
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.heading}>Form Preview</h2>
-      <div className={styles.formBody}>
-        {/* Render form fields based on the selected tab */}
-        {uiSchema && (
-          <RenderField
-            uiSchema={uiSchema}
-            register={register}
-            setValue={setValue}
-            watch={watch}
-            unregister={unregister}
-          />
-        )}
+      {console.log(uiSchema.length)}
+      {uiSchema.length !== 0
+        ? (
+          <div className={styles.formBody}>
+            {/* Render form fields based on the selected tab */}
+            {uiSchema && (
+              <RenderField
+                uiSchema={uiSchema}
+                register={register}
+                setValue={setValue}
+                watch={watch}
+                unregister={unregister}
+              />
+            )}
 
-        <button onClick={handleSubmit(onSubmit)}>Submit</button>
-      </div>
+            <div className={styles.actionCta}>
+              <button>Cancel</button>
+              <button className={styles.submitCta} onClick={handleSubmit(onSubmit)}>Submit</button>
+            </div>
+          </div>
+        )
+        : (
+          <div className={styles.guideText}>{' \' Please write your JSON in Json Editor \' '}</div>
+        )}
     </div>
   );
 };
