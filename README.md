@@ -14,7 +14,7 @@ In the project directory, you can run:
 
 ## Description of the project
 
-We can write/paste the JSON in the `JSON Editor` for the form we want to generate. You can see that form in the `Form Preview` section. Upon clicking `Submit` for selected fields, you can view the data in the console. I have also implemented the function to send the data to the backend, targeting our desired endpoint (Currently, the code for that function is commented out).
+We can write/paste the JSON in the `JSON Editor` for the form we want to generate. You can see that form in the `Form Preview` section. Upon clicking `Submit` for selected fields, you can view the data on [https://65c49822dae2304e92e2e387.mockapi.io/api/form-response](https://65c49822dae2304e92e2e387.mockapi.io/api/form-response). I have also implemented the function to send the data to the backend.
 
 ### SnapShot of UI:
 ![image](https://github.com/mr-jay-250/Frontend-Assignment/assets/64847529/3a3e74b9-3c8c-4b69-a2d2-8d8c5c410b27)
