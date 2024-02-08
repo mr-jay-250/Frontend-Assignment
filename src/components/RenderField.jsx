@@ -23,124 +23,126 @@ const RenderField = ({
   }, []);
 
   useEffect(() => {
-    setValue(`${parentJsonKey}_conditional`, true);
+    setValue(`${parentJsonKey}_conditional`, false);
   }, []);
 
   return (
     <>
-      {uiSchema?.map((field, index) => {
-        const isDisplay = field.conditions
-          ? field.conditions?.every(condition => {
-            const value = watch(condition.jsonKey);
-            switch (condition.op) {
-            case '==':
-              return value === condition.value;
-            case '!=':
-              return value !== condition.value;
-            default:
-              return false;
-            }
-          })
-          : true;
-
-        return (
-          isDisplay && (
-            <div
-              key={index}
-              style={
-                {
-                  // display: isDisplay ? 'block' : 'none'
-                }
+      <div>
+        {uiSchema?.map((field, index) => {
+          const isDisplay = field.conditions
+            ? field.conditions?.every(condition => {
+              const value = watch(condition.jsonKey);
+              switch (condition.op) {
+              case '==':
+                return value === condition.value;
+              case '!=':
+                return value !== condition.value;
+              default:
+                return false;
               }
-            >
-              {field.uiType === 'Ignore' && (
-                <FormFields.FieldGroup
-                  field={field}
-                  register={register}
-                  setValue={setValue}
-                  watch={watch}
-                  parentJsonKey={field.jsonKey}
-                  unregister={unregister}
-                />
-              )}
-              {field.uiType === 'Input' &&
+            })
+            : true;
+
+          return (
+            isDisplay && (
+              <div
+                key={index}
+                style={
+                  {
+                  // display: isDisplay ? 'block' : 'none'
+                  }
+                }
+              >
+                {field.uiType === 'Ignore' && (
+                  <FormFields.FieldGroup
+                    field={field}
+                    register={register}
+                    setValue={setValue}
+                    watch={watch}
+                    parentJsonKey={field.jsonKey}
+                    unregister={unregister}
+                  />
+                )}
+                {field.uiType === 'Input' &&
                 (field.validate?.required ||
                   watch(`${parentJsonKey}_conditional`)) && (
-                <FormFields.FieldInput
-                  field={field}
-                  register={register}
-                  parentJsonKey={parentJsonKey}
-                  level={field.level}
-                />
-              )}
-              {field.uiType === 'Radio' &&
+                  <FormFields.FieldInput
+                    field={field}
+                    register={register}
+                    parentJsonKey={parentJsonKey}
+                    level={field.level}
+                    watch={watch}
+                  />
+                )}
+                {field.uiType === 'Radio' &&
                 (field.validate?.required ||
                   watch(`${parentJsonKey}_conditional`)) && (
-                <FormFields.FieldRadio
-                  field={field}
-                  register={register}
-                  setValue={setValue}
-                  watch={watch}
-                  parentJsonKey={parentJsonKey}
-                  level={field.level}
-                />
-              )}
-              {field.uiType === 'Select' &&
+                  <FormFields.FieldRadio
+                    field={field}
+                    register={register}
+                    setValue={setValue}
+                    watch={watch}
+                    parentJsonKey={parentJsonKey}
+                    level={field.level}
+                  />
+                )}
+                {field.uiType === 'Select' &&
                 (field.validate?.required ||
                   watch(`${parentJsonKey}_conditional`)) && (
-                <FormFields.FieldSelect
-                  field={field}
-                  register={register}
-                  setValue={setValue}
-                  watch={watch}
-                  parentJsonKey={parentJsonKey}
-                  level={field.level}
-                />
-              )}
-              {field.uiType === 'Switch' &&
+                  <FormFields.FieldSelect
+                    field={field}
+                    register={register}
+                    setValue={setValue}
+                    watch={watch}
+                    parentJsonKey={parentJsonKey}
+                    level={field.level}
+                  />
+                )}
+                {field.uiType === 'Switch' &&
                 (field.validate?.required ||
                   watch(`${parentJsonKey}_conditional`)) && (
-                <FormFields.FieldSwitch
-                  field={field}
-                  register={register}
-                  setValue={setValue}
-                  watch={watch}
-                  parentJsonKey={parentJsonKey}
-                  level={field.level}
-                />
-              )}
-              {field.uiType === 'Group' && (
-                <FormFields.FieldGroup
-                  field={field}
-                  register={register}
-                  setValue={setValue}
-                  watch={watch}
-                  parentJsonKey={field.jsonKey}
-                  unregister={unregister}
-                  level={field.level}
-                />
-              )}
-            </div>
-          )
-        );
-      })}
-      {isConditionalFields &&
+                  <FormFields.FieldSwitch
+                    field={field}
+                    register={register}
+                    setValue={setValue}
+                    watch={watch}
+                    parentJsonKey={parentJsonKey}
+                    level={field.level}
+                  />
+                )}
+                {field.uiType === 'Group' && (
+                  <FormFields.FieldGroup
+                    field={field}
+                    register={register}
+                    setValue={setValue}
+                    watch={watch}
+                    parentJsonKey={field.jsonKey}
+                    unregister={unregister}
+                    level={field.level}
+                  />
+                )}
+              </div>
+            )
+          );
+        })}
+        {isConditionalFields &&
         parentUiType === 'Group' &&
         parentLevel < uiSchema?.[0]?.level && (
-        <div className={styles.conditionalFields}>
-          <label className={styles.switch}>
-            <input
-              type='checkbox'
-              {...register(`${parentJsonKey}_conditional`, {
-                required: false
-              })}
-              // defaultChecked={true}
-            />
-            <span className={styles.slider}></span>
-          </label>
-          <label>Show Advanced Fields for {parentJsonKey}</label>
-        </div>
-      )}
+          <div className={styles.conditionalFields}>
+            <label className={styles.switch}>
+              <input
+                type='checkbox'
+                {...register(`${parentJsonKey}_conditional`, {
+                  required: false
+                })}
+              />
+              <span className={styles.slider}></span>
+            </label>
+            <label>Show Advanced Fields for {parentJsonKey}</label>
+          </div>
+        )}
+      </div>
     </>
   );
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RenderField from './RenderField';
 import styles from '../App.module.css';
 
-const FieldInput = ({ field, register, parentJsonKey, level }) => (
+const FieldInput = ({ field, register, parentJsonKey, level, watch }) => (
   <div className={styles.inputField}>
     <div className={styles.sectionHeading}>
       {field.label}
@@ -12,6 +12,7 @@ const FieldInput = ({ field, register, parentJsonKey, level }) => (
     <input
       className={styles.input}
       type='text'
+      value={watch(level === 0 ? field.jsonKey : `${parentJsonKey}.${field.jsonKey}`) || ''} // Set value using watch
       {...register(
         level === 0 ? field.jsonKey : `${parentJsonKey}.${field.jsonKey}`,
         {

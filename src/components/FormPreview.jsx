@@ -10,17 +10,21 @@ const FormPreview = ({ uiSchema, selectedTab }) => {
     setValue,
     watch,
     handleSubmit,
-    unregister
+    unregister,
+    reset
   } = useForm();
 
   const onSubmit = data => {
     console.log('data', data);
   };
 
+  const handleCancel = () => {
+    reset();
+  };
+
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.heading}>Form Preview</h2>
-      {console.log(uiSchema.length)}
       {uiSchema.length !== 0
         ? (
           <div className={styles.formBody}>
@@ -36,7 +40,7 @@ const FormPreview = ({ uiSchema, selectedTab }) => {
             )}
 
             <div className={styles.actionCta}>
-              <button>Cancel</button>
+              <button onClick={handleCancel}>Cancel</button>
               <button className={styles.submitCta} onClick={handleSubmit(onSubmit)}>Submit</button>
             </div>
           </div>

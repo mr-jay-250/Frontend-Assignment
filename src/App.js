@@ -9,12 +9,8 @@ const App = () => {
 
   const handleJsonChange = newUiSchema => {
     setUiSchema(newUiSchema);
-    // Reset selected tab when UI schema changes
-    setSelectedTab(0);
-  };
 
-  const handleSubmit = values => {
-    console.log('Form Data to be sent:', values);
+    setSelectedTab(0);
   };
 
   return (
@@ -27,7 +23,6 @@ const App = () => {
         <FormPreview
           uiSchema={uiSchema}
           selectedTab={selectedTab}
-          onSubmit={handleSubmit}
         />
       </div>
     </div>
