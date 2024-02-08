@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import RenderField from './RenderField';
+import { submitFormData } from '../utils/backendService';
 import styles from '../App.module.css';
 
 const FormPreview = ({ uiSchema, selectedTab }) => {
@@ -14,8 +15,12 @@ const FormPreview = ({ uiSchema, selectedTab }) => {
     reset
   } = useForm();
 
-  const onSubmit = data => {
-    console.log('data', data);
+  const onSubmit = async (data) => {
+    try {
+      await submitFormData(data);
+    } catch (error) {
+      console.error('Error submitting data:', error);
+    }
   };
 
   const handleCancel = () => {
