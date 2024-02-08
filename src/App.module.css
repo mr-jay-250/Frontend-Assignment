@@ -231,3 +231,14 @@ input:checked + .slider:before {
     background-color: darkslategrey;
     color: #fff;
 }
+
+@media (max-width: 768px) {
+    .mainContainer {
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    .formBody {
+        width: auto;
+    }
+}
